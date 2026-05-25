@@ -2,7 +2,17 @@
 
 ## 一、通用规范
 
-统一成功响应：
+### 响应统一规范
+
+| 响应类型 | code               | success | 说明                                     |
+| -------- | ------------------ | ------- | ---------------------------------------- |
+| 业务成功 | 0                  | true    | data 为成功数据，如无数据返回 null       |
+| 业务失败 | 1                  | true    | data 为详细错误描述，可不返回或返回 null |
+| 系统错误 | 401/403/404/500... | false   | 未授权/禁止访问/未找到/服务器错误等      |
+
+**完整响应示例：**
+
+业务成功：
 
 ```json
 {
@@ -15,36 +25,65 @@
 }
 ```
 
+业务失败：
+
+```json
+{
+  "timestamp": "2026-05-22T10:00:00Z",
+  "path": "/api/contents",
+  "message": "错误描述",
+  "code": 1,
+  "data": {},
+  "success": true
+}
+```
+
+系统错误：
+
+```json
+{
+  "timestamp": "2026-05-22T10:00:00Z",
+  "path": "/api/contents",
+  "message": "错误描述",
+  "code": 401,
+  "success": false
+}
+```
+
 通用约定：
 
-- B 端生产侧写接口需要 JWT 鉴权；C 端阅读互动接口可支持 JWT 或匿名设备标识去重。
+- B 端部分生产侧写接口需要 JWT 鉴权；C 端阅读互动接口需要 JWT;
+- 所有的用户都有 C 端与 B 端角色与权限，通过接口鉴权区分；后续可增加管理员角色。
 - B 端创作者后台调用注册登录、Prompt、素材、草稿、AI 创作、审核、评分、改写、发布和分发中心接口。
 - C 端内容前台调用内容详情、首页信息流、热点榜、爆文榜、推荐榜和阅读互动接口。
-- 所有列表接口使用 `limit + cursor` 分页。
-- 请求体必须经过 DTO 校验。
+- 所有的接口都必须经过 DTO 校验，而且需要在 Swagger 中有完整的接口定义和示例。
 - AI 生成、审核、评分、改写在 MVP 阶段优先同步返回；耗时增加时再切换为任务模式。
 
 ## 二、接口设计
 
-### 1. 鉴权接口
+### 1. 用户模块接口
 
 ```text
-POST /api/auth/register
-POST /api/auth/login
-POST /api/auth/logout
-GET  /api/auth/me
+POST /api/user/register
+POST /api/user/login
+POST /api/user/logout
 ```
 
 登录响应建议返回：
 
 ```json
 {
-  "accessToken": "jwt",
+  "token": {
+    "accessToken": "jwt_token_string",
+    "refreshToken": "jwt_refresh_token_string"
+  },
   "user": {
     "id": "user_xxx",
     "email": "demo@example.com",
+    "phone": "13800138000",
     "username": "Demo Creator",
-    "role": "creator"
+    "avatarUrl": "https://example.com/avatar.jpg",
+    "status": "active"
   }
 }
 ```

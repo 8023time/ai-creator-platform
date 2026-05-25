@@ -17,12 +17,11 @@ ai-creator-platform/
 ├── server/                        # 后端 API 服务，NestJS
 │   ├── src/                       # 后端源码目录
 │   ├── libs/                      # 后端公共库
+│   ├── prisma/                    # Prisma 数据库目录
 |
 ├── packages/                      # 共享包目录
 │   ├── config/                    # 共享配置包
 │   └── shared/                    # 共享类型
-|
-├── prisma/                        # Prisma 数据库目录
 |
 ├── .editorconfig                  # 编辑器通用格式约束
 ├── .gitattributes                 # Git 文本属性与换行处理
@@ -31,7 +30,6 @@ ai-creator-platform/
 ├── .prettierrc                    # Prettier 格式化规则
 ├── Caddyfile                      # 本地域名反向代理配置
 ├── commitlint.config.cjs          # Commitlint 配置
-├── eslint.config.js               # 根 ESLint 配置
 ├── package.json                   # 根依赖与脚本配置
 ├── pnpm-lock.yaml                 # pnpm 锁文件
 ├── pnpm-workspace.yaml            # pnpm 工作区配置
