@@ -1,7 +1,12 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next';
+import { Config } from '@cm/config';
 
 const nextConfig: NextConfig = {
-  allowedDevOrigins: ["web.8023time.com"],
+  env: {
+    NEXT_PUBLIC_WEB_HOST: Config.host.web,
+    NEXT_PUBLIC_WEB_PORT: String(Config.port.web),
+    NEXT_PUBLIC_API_HOST: Config.host.api,
+  },
 };
 
 export default nextConfig;

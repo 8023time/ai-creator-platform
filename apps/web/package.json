@@ -1,14 +1,14 @@
 {
-  "name": "web",
+  "name": "@cm/web",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -H 0.0.0.0 -p 8081",
+    "dev": "next dev -H 0.0.0.0 -p 8080",
     "build": "next build",
-    "start": "next start",
-    "lint": "eslint"
+    "lint:eslint": "eslint"
   },
   "dependencies": {
+    "@cm/config": "workspace:*",
     "next": "16.2.6",
     "react": "19.2.4",
     "react-dom": "19.2.4"

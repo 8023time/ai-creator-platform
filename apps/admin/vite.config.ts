@@ -1,22 +1,30 @@
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
+import { defineConfig } from 'vite';
+import { fileURLToPath, URL } from 'node:url';
+import react from '@vitejs/plugin-react';
+import { Config } from '@cm/config';
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
 
   server: {
-    host: "0.0.0.0",
-    port: 8080,
+    host: '0.0.0.0',
+    port: Config.port.admin,
     strictPort: true,
-    allowedHosts: ["creator.8023time.com"],
-    open: "http://creator.8023time.com",
+    allowedHosts: [Config.host.admin],
+    open: `http://${Config.host.admin}`,
     proxy: {
-      "/api": {
-        target: "http://api.8023time.com",
+      '/api': {
+        target: `http://${Config.host.api}`,
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ""),
+        rewrite: (path) => path.replace(/^\/api/, ''),
       },
+    },
+  },
+
+  // 别名
+  resolve: {
+    alias: {
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
 });

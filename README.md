@@ -2,6 +2,8 @@
 
 ## 一、项目架构概览
 
+使用 Turborepo + pnpm + Monorepo 统一管理整个项目
+
 ```
 ai-creator-platform/
 ├── .vscode/                       # VS Code 工作区配置
@@ -45,18 +47,41 @@ ai-creator-platform/
 127.0.0.1 api.8023time.com
 ```
 
+当前项目使用的技术栈版本：
+
 - Node.js: v24.11.1
 - pnpm: 10.25.0
 - nest: 11.0.14
 
+注意：
+
+- 如果使用的需要只用其他pnpm版本，请先修改根目录下的 package.json 中的 "packageManager" 字段为对应版本，否则使用 turbo 会报错。
+
 ## 三、安装
 
-- 安装 Caddy
-- 安装项目依赖
+1.  安装 Caddy
+2.  安装项目依赖 `pnpm install`
 
 ## 四、启动
 
-待定
+1. 启动 Caddy 反向代理（前提）：
+
+```bash
+pnpm run dev:proxy
+```
+
+2. 启动后端 API 服务：
+
+```bashbash
+pnpm run dev:server
+```
+
+3. 启动前端应用：
+
+```bashbash
+pnpm run dev:web
+pnpm run dev:admin
+```
 
 ## 五、项目文档
 
