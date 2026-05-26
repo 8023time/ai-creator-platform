@@ -1,11 +1,11 @@
-http://creator.8023time.com {
+http://creator.xingliou.8023time.com {
   reverse_proxy 127.0.0.1:8081
 }
 
-http://web.8023time.com {
+http://xingliou.8023time.com {
   reverse_proxy 127.0.0.1:8080
 }
 
-http://api.8023time.com {
+http://api.xingliou.8023time.com {
   reverse_proxy 127.0.0.1:3000
-}
+}  
