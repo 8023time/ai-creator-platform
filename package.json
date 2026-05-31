@@ -24,6 +24,11 @@
     "dev:web": "turbo run dev --filter=@xingliu/web",
     "dev:admin": "turbo run dev --filter=@xingliu/admin",
     "dev:server": "turbo run dev --filter=@xingliu/server",
+    "build": "turbo run build",
+    "build:web": "turbo run build --filter=@xingliu/web",
+    "build:admin": "turbo run build --filter=@xingliu/admin",
+    "build:server": "turbo run build --filter=@xingliu/server",
+    "build:config": "turbo run build --filter=@xingliu/config",
     "lint:eslint": "turbo run lint:eslint",
     "lint:oxc": "oxlint",
     "lint": "pnpm lint:oxc && pnpm lint:eslint",
@@ -41,6 +46,7 @@
     "@commitlint/config-conventional": "^21.0.1",
     "@eslint/eslintrc": "^3.3.5",
     "@eslint/js": "^10.0.1",
+    "@types/md5": "^2.3.6",
     "commitizen": "^4.3.1",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^10.4.0",
@@ -55,6 +61,7 @@
     "typescript-eslint": "^8.59.4"
   },
   "dependencies": {
+    "dayjs": "^1.11.21",
     "md5": "^2.3.0"
   }
 }
