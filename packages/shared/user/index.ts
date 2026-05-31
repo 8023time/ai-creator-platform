@@ -40,9 +40,11 @@ export type AuthTokenPayloadType = AuthTokenPayload & {
 
 export interface UserProfileResponse extends AuthUser {}
 
+// 登录返回的数据类型
 export interface LoginUserResponse {
   token: AuthToken;
   user: AuthUser;
 }
 
+// 注册返回的登数据类型
 export type RegisterUserResponse = LoginUserResponse;
