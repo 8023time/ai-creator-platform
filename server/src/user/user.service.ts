@@ -4,7 +4,7 @@ import { LoginUserDto } from './dto/login-user.dto';
 import { LogoutUserDto } from './dto/logout-user.dto';
 import { ResponseService, PrismaService } from '@libs/common';
 import { AuthService } from '../auth/auth.service';
-import type { LoginUserResponse, RegisterUserResponse } from '@xingliu/shared';
+import type { LoginUserResponse, RegisterUserResponse } from '@xingliu/shared/user';
 
 @Injectable()
 export class UserService {
@@ -19,12 +19,12 @@ export class UserService {
 
     // 检查手机号和邮箱是否已被注册
     if (await this.prismaService.user.findUnique({ where: { phone } })) {
-      return this.responseService.error({}, '手机号已被注册');
+      return this.responseService.error(null, '手机号已被注册');
     }
 
     // 邮箱是可选的，如果提供了邮箱则需要检查是否已被注册
     if (email && (await this.prismaService.user.findUnique({ where: { email } }))) {
-      return this.responseService.error({}, '邮箱已被注册');
+      return this.responseService.error(null, '邮箱已被注册');
     }
 
     // 创建用户
@@ -87,11 +87,11 @@ export class UserService {
     });
 
     if (!user) {
-      return this.responseService.error({}, '账号或密码错误');
+      return this.responseService.error(null, '账号或密码错误');
     }
 
     if (user.passwordHash !== password) {
-      return this.responseService.error({}, '账号或密码错误');
+      return this.responseService.error(null, '账号或密码错误');
     }
 
     return this.responseService.success<LoginUserResponse>(
@@ -130,7 +130,7 @@ export class UserService {
 
       return this.responseService.success(null, '退出成功');
     } catch {
-      return this.responseService.error({}, '无效的刷新令牌');
+      return this.responseService.error(null, '无效的刷新令牌');
     }
   }
 }

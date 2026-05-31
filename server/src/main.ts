@@ -14,6 +14,10 @@ async function bootstrap() {
 
   app.setGlobalPrefix('api');
 
+  app.enableCors({
+    origin: 'http://creator.xingliu.8023time.com,http://xingliu.8023time.com',
+  });
+
   const config = new DocumentBuilder()
     .setTitle('AI Creator Platform API')
     .setDescription('AI 创作者平台后端接口文档')

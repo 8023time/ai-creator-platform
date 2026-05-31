@@ -14,10 +14,8 @@ interface ResponseFormat<T> {
 
 @Injectable()
 export class HttpResponseInterceptor implements NestInterceptor {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   intercept(context: ExecutionContext, next: CallHandler): Observable<ResponseFormat<any>> {
     return next.handle().pipe(
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       map((data: ResponseFormat<any>) => {
         const ctx = context.switchToHttp();
         const response = ctx.getResponse<Request>();
