@@ -1,10 +1,11 @@
 import { defineConfig } from 'vite';
 import { fileURLToPath, URL } from 'node:url';
 import react from '@vitejs/plugin-react';
+import tailwindcss from '@tailwindcss/vite';
 import { Config } from '@xingliu/config';
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), tailwindcss()],
 
   server: {
     host: '0.0.0.0',
@@ -16,7 +17,6 @@ export default defineConfig({
       '/api': {
         target: `http://${Config.host.api}`,
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ''),
       },
     },
   },
